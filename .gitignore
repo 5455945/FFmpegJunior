@@ -1,0 +1,5 @@
+/build/tmp
+/build/*.VC.db
+/build/*.VC.opendb
+/build/.vs
+/src/project/*.user
