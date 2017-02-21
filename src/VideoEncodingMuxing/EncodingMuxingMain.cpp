@@ -39,7 +39,8 @@ static bool hello(int argc, char **argv, AVDictionary *opt, IOParam &ioParam)
 
 /*************************************************
 Function:		main
-Description:	入口点函数
+Description:	封装音频和视频为音视频文件
+这个demo在3.2.2 sdk 中有问题，需要调查修正
 *************************************************/
 int main(int argc, char **argv)
 {

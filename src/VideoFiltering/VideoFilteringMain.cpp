@@ -78,17 +78,18 @@ static void setFilterDescr(int idx, char **filter_descr)
 	case 6:
 		*filter_descr = "drawbox=x=100:y=100:w=100:h=100:color=pink@0.5";
 	case 7:
-		*filter_descr = "drawtext=fontfile=arial.ttf:fontcolor=green:fontsize=30:text='FFMpeg Filter Demo'";
+		*filter_descr = "drawtext=fontfile=simfang.ttf:fontcolor=green:fontsize=30:text='FFMpeg Filter Demo'";
 	}
 }
 
 /*************************************************
 Function:		main
-Description:	入口点函数
+Description:	视频加水印
+Test: ffplay -f rawvideo -video_size 1280x720 -autoexit -i ../video/vfil.yuv
 *************************************************/
 int main(int argc, char **argv)
 {
-	int ret = 0;
+	int ret = 0, frameIdx = 1;
 	AVFrame *frame_in = NULL;  
 	AVFrame *frame_out = NULL;  
 	unsigned char *frame_buffer_in = NULL;  
@@ -138,7 +139,7 @@ int main(int argc, char **argv)
 		//将输出frame写出到输出文件
 		Write_yuv_to_outfile(frame_out, files);
 
-		printf("Process 1 frame!\n");  
+		printf("Process %d frame!\n", frameIdx++);
 		av_frame_unref(frame_out);  
 	}
 

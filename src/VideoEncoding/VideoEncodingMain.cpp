@@ -33,7 +33,9 @@ void hello()
 
 /*************************************************
 Function:		main
-Description:	入口点函数
+Description:	对yuv视频序列编码成h264
+Test: ffplay -f rawvideo -video_size 1280x720 -autoexit -i ../video/vdem.yuv
+Test: ffplay -window_title "ffplay venc.h264" -x 1280 -y 720 -t 00:10 -autoexit -i ../video/venc.h264
 *************************************************/
 int main(int argc, char **argv)
 {

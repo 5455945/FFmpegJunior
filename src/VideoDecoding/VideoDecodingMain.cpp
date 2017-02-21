@@ -53,7 +53,8 @@ void write_out_yuv_frame(const CodecCtx &ctx, IOParam &in_out)
 
 /*************************************************
 Function:		main
-Description:	入口点函数
+Description:	视频解码，把h264解码为yuv
+Test: ffplay -f rawvideo -video_size 1280x720 -autoexit -i ../video/vdec.yuv
 *************************************************/
 int main(int argc, char **argv)
 {

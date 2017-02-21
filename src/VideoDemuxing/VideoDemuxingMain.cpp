@@ -43,7 +43,9 @@ static int hello(IOFileName &files, int argc, char **argv)
 
 /*************************************************
 Function:		main
-Description:	入口点函数
+Description:	视频解封装，把vdem.mp4姐封装为vdem.yuv和vdem.acc
+Test: ffplay -f rawvideo -pix_fmt yuv420p -video_size 1280x720 -autoexit -i ../video/vdem.yuv
+Test: ffplay -f f32le -ac 1 -ar 44100 -autoexit -i ../video/vdem.aac
 *************************************************/
 int main(int argc, char **argv)
 {
@@ -102,7 +104,7 @@ int main(int argc, char **argv)
 	if (va_ctx.video_stream) 
 	{
 		printf("Play the output video file with the command:\n"
-			"ffplay -f rawvideo -pix_fmt %s -video_size %dx%d %s\n",
+			"ffplay -f rawvideo -pix_fmt %s -video_size %dx%d -autoexit -i %s\n",
 			av_get_pix_fmt_name(va_ctx.pix_fmt), va_ctx.width, va_ctx.height, files.video_dst_filename);
 	}
 
@@ -126,7 +128,7 @@ int main(int argc, char **argv)
 			goto end;
 
 		printf("Play the output audio file with the command:\n"
-			"ffplay -f %s -ac %d -ar %d %s\n",
+			"ffplay -f %s -ac %d -ar %d -autoexit -i %s\n",
 			fmt, n_channels, va_ctx.audio_dec_ctx->sample_rate,
 			files.audio_dst_filename);
 	}

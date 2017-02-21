@@ -24,7 +24,7 @@ bool Open_deocder(CodecCtx &ctx)
 		fprintf(stderr, "Could not allocate video codec context\n");
 		return false;
 	}
-
+	
 	if (ctx.pCodec->capabilities & AV_CODEC_CAP_TRUNCATED)
 		ctx.pCodecContext->flags |= AV_CODEC_FLAG_TRUNCATED; // we do not send complete frames
 

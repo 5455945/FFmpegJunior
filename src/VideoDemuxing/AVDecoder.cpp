@@ -75,7 +75,7 @@ int Decode_packet(IOFileName &files, DemuxingVideoAudioContex &va_ctx, int *got_
 				return -1;
 			}
 
-			printf("video_frame%s n:%d coded_n:%d pts:%s\n", cached ? "(cached)" : "", video_frame_count++, va_ctx.frame->coded_picture_number, va_ctx.frame->pts);
+			printf("video_frame%s n:%d coded_n:%d pts:%ld\n", cached ? "(cached)" : "", video_frame_count++, va_ctx.frame->coded_picture_number, va_ctx.frame->pts);
 
 			/* copy decoded frame to destination buffer:
 			* this is required since rawvideo expects non aligned data */
@@ -93,7 +93,7 @@ int Decode_packet(IOFileName &files, DemuxingVideoAudioContex &va_ctx, int *got_
 		ret = avcodec_decode_audio4(va_ctx.audio_dec_ctx, va_ctx.frame, got_frame, &va_ctx.pkt);
 		if (ret < 0)
 		{
-			printf("Error decoding audio frame (%s)\n", ret);
+			printf("Error decoding audio frame (%d)\n", ret);
 			return ret;
 		}
 		/* Some audio decoders decode only part of the packet, and have to be
@@ -105,7 +105,7 @@ int Decode_packet(IOFileName &files, DemuxingVideoAudioContex &va_ctx, int *got_
 		if (*got_frame)
 		{
 			size_t unpadded_linesize = va_ctx.frame->nb_samples * av_get_bytes_per_sample((AVSampleFormat)va_ctx.frame->format);
-			printf("audio_frame%s n:%d nb_samples:%d pts:%s\n",
+			printf("audio_frame%s n:%d nb_samples:%d pts:%ld\n",
 				cached ? "(cached)" : "",
 				audio_frame_count++, va_ctx.frame->nb_samples,
 				va_ctx.frame->pts);
